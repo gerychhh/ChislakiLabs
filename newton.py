@@ -1,13 +1,11 @@
 import numpy as np
 
-# ---- Система уравнений ----
 def F(x):
     x1, x2 = x
     f1 = np.cos(0.4 * x2 + x1**2) + x2**2 + x1**2 - 1.6
     f2 = 1.5 * x1**2 - x2**2 / 0.36 - 1
     return np.array([f1, f2])
 
-# ---- Якоби ----
 def J(x):
     x1, x2 = x
     j11 = -2 * x1 * np.sin(0.4 * x2 + x1**2) + 2 * x1
@@ -17,7 +15,6 @@ def J(x):
     return np.array([[j11, j12],
                      [j21, j22]])
 
-# ---- Метод Ньютона ----
 def newton(F, J, x0, eps1=1e-9, eps2=1e-9, max_iter=100):
     x = np.array(x0, dtype=float)
     for k in range(max_iter):
@@ -39,7 +36,6 @@ def newton(F, J, x0, eps1=1e-9, eps2=1e-9, max_iter=100):
     print("\nПревышено максимальное количество итераций!")
     return x
 
-# ---- Основная часть ----
 print("Начальное приближение (1; -1)")
 x1 = newton(F, J, [1, -1])
 print("Решение:", x1)
