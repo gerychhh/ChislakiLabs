@@ -49,7 +49,7 @@ def newton_method(F, x0, eps1=1e-9, eps2=1e-9, NIT=100, method="analytic", M=0.0
 
         delta1 = np.max(np.abs(Fx))
 
-        step = np.abs(x_new - x)
+        step = np.abs(delta_x)
         scale = np.where(np.abs(x_new) >= 1.0, np.abs(x_new), 1.0)
         delta2 = np.max(step / scale)
 
@@ -69,5 +69,5 @@ if __name__ == "__main__":
     x0 = np.array([1.0, -1.0])
     newton_method(F, x0, method="analytic")
 
-    for M in [0.01, 0.05, 0.1]:
+    for M in [0.01, 0.001, 0.0001]:
         newton_method(F, x0, method="numeric", M=M)
